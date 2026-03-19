@@ -9,10 +9,7 @@ class Klient:
 		return f"{self.meno}, {self.email}, {self.suma}"
 	def vytvor_fakturu(self):
 		vytvor_fakturu(self.meno, self.email, self.suma)
-"""
-klient = Klient("Ivan", "ivan@gmail.com", 200)
-print(klient)
-"""
+
 
 class VIPKlient(Klient):
 	def __init__(self, meno, email, suma, zlava):
@@ -25,7 +22,3 @@ class VIPKlient(Klient):
 		print(f"{self.meno}, {self.email}, {self.suma}, zľava: {self.zlava}%, po zľave: {self.vypocitaj_sumu()}")
 	
 
-"""
-klient = VIPKlient(f"Patrik", "patrik@gmail.com", 200, 20)
-klient.info()
-"""

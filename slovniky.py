@@ -1,7 +1,5 @@
 from generator import vytvor_fakturu
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
-from datetime import date
+
 
 klient_a = {
 	"meno": "Peter",
