@@ -10,16 +10,21 @@ while True:
 
 		if volba == "1":
 			zoznam = []
-			meno = input("Zadajte meno: ")
-			email = input("Zadajte email: ")
+			meno = input("Zadajte Vaše meno: ")
+			email = input("Zadajte Váš email: ")
+			iban = input("Zadajte Váš IBAN: ")
+			klient = input("Zadajte meno klienta: ")
+			email_klienta = input("Zadajte email klienta: ")
+
 			while True:
 				popis = input("Zadajte popis položky (alebo Enter pre koniec): ")
 				if popis == "":
 					print("Končím...")
 					break
+				ks = int(input("Zadajte počet ks: "))
 				suma = int(input("Zadajte sumu: "))
-				zoznam.append({"popis": popis, "suma": suma})
-			vytvor_fakturu(meno, email, zoznam)
+				zoznam.append([popis, ks, suma])
+			vytvor_fakturu(meno, email, zoznam, klient, email_klienta, iban)
 			
 		elif volba == "2":
 			print("Končím...")
