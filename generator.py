@@ -8,7 +8,7 @@ pdfmetrics.registerFont(TTFont("DejaVu", "DejaVuSans.ttf"))
 
 today = date.today()
 
-def vytvor_fakturu(meno, email, suma):
+def vytvor_fakturu(meno, email, zoznam):
 	cislo = cislo_faktury()
 	pdf = canvas.Canvas(f"faktura_{meno}_{cislo}.pdf", pagesize=A4)
 	sirka, vyska = A4
@@ -19,15 +19,20 @@ def vytvor_fakturu(meno, email, suma):
 	pdf.drawString(50, vyska - 130, f"Predávajúci: {meno}")
 	pdf.drawString(50, vyska - 150, f"Email: {email}")
 
-	pdf.drawString(50, vyska - 220, "Popis služby")
-	pdf.drawString(350, vyska - 220, "Suma")
+	y = vyska - 220
+	celkova_suma = 0
+	for p in zoznam:
+		popis = p['popis']
+		suma = p['suma']
+		pdf.drawString(50, y, popis)
+		pdf.drawString(350, y, f"{suma} EUR")
+		celkova_suma += suma
+		y -= 20
 
-	pdf.drawString(50, vyska - 250, "Python automatizácia")
-	pdf.drawString(350, vyska - 250, f"{suma} EUR")
 	pdf.drawString(50, vyska - 170, f"Dátum: {today}")
 
 	pdf.setFont("DejaVu", 14)
-	pdf.drawString(50, vyska - 320, f"CELKOM: {suma} EUR")
+	pdf.drawString(50, vyska - 320, f"CELKOM: {celkova_suma} EUR")
 	pdf.save()
 	uloz_cislo_faktury(cislo + 1)
 	
@@ -42,4 +47,3 @@ def uloz_cislo_faktury(cislo):
 	with open("cislo_faktury.txt", "w", encoding="utf-8") as subor:
 		subor.write(str(cislo))
 
-vytvor_fakturu("Ivan", "ivan@gmail.com", 200)
