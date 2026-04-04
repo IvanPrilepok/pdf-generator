@@ -77,12 +77,7 @@ def generate_invoice(seller, client, items):
 	pdf.save()
 	save_invoice_number(number + 1)
 
-if __name__ == "__main__":
-    seller = {"name": "Ivan Prilepok", "email": "ivan@gmail.com", "iban": "SK67 0000 1111 2222 3333"}
-    client = {"name": "Peter Kovac", "email": "peter@gmail.com"}
-    items = [["Web scraping", 2, 150], ["Automation", 1, 200]]
-    generate_invoice(seller, client, items)
-    print("Invoice generated!")
+
 
 
 
