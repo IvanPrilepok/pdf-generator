@@ -2,7 +2,7 @@ import sqlite3
 from config import DB_NAME
 
 def init_db():
-	conn = sqlite3.connect("invoice.db")
+	conn = sqlite3.connect(DB_NAME)
 	cursor = conn.cursor()
 
 	cursor.execute("""
@@ -18,7 +18,7 @@ def init_db():
 	conn.close()
 
 def add_client(name, email, iban):
-	conn = sqlite3.connect("invoice.db")
+	conn = sqlite3.connect(DB_NAME)
 	cursor = conn.cursor()
 
 	cursor.execute(
@@ -30,7 +30,7 @@ def add_client(name, email, iban):
 	conn.close()
 
 def get_clients():
-	conn = sqlite3.connect("invoice.db")
+	conn = sqlite3.connect(DB_NAME)
 	cursor = conn.cursor()
 
 	cursor.execute("SELECT * FROM clients")
@@ -40,7 +40,7 @@ def get_clients():
 	return clients
 
 def get_client_by_id(client_id):
-	conn = sqlite3.connect("invoice.db")
+	conn = sqlite3.connect(DB_NAME)
 	cursor = conn.cursor()
 
 	cursor.execute("SELECT * FROM clients WHERE id = ?", (client_id,))
